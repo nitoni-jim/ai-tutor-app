@@ -1,3 +1,15 @@
+"""
+Math Cleaning Module
+
+Handles:
+- Replacing unicode math symbols (×, ÷, −)
+- Normalizing operators to standard ASCII equivalents
+- Cleaning malformed mathematical strings
+
+Purpose:
+Ensure mathematical expressions are embedding-friendly and consistent.
+"""
+
 # math_cleaning.py
 # Normalization helpers for math formulas inside exam questions.
 
