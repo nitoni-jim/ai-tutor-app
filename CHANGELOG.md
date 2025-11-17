@@ -1,16 +1,12 @@
-
-Paste:
-
-```md
 # Changelog
 
-All notable changes to this project will be tracked here.
+All notable changes to this project will be documented in this file.
 
 ---
 
 ## [0.1.0] - 2025-02-19
 ### Added
-- Full repository structure and README
+- Full repository structure and documentation
 - Experiments Jupyter Notebook
 - Embedding generation pipeline
 - Vector store implementation
@@ -19,10 +15,11 @@ All notable changes to this project will be tracked here.
 - MIT License
 - GitHub Topics
 - GitHub Profile README
+- CONTRIBUTING.md
 
 ### Improved
 - Code modularity
-- Documentation and architecture diagram
+- README formatting and architecture diagram
 
 ---
 
@@ -31,5 +28,5 @@ All notable changes to this project will be tracked here.
 - FAISS vector index
 - Topic classification model
 - LLM-based explanation generation
-- Dataset expansion pipeline
+- Expanded dataset ingestion pipeline
 - Android mobile app integration
