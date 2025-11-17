@@ -1,206 +1,203 @@
-AI-Tutor-App
+🚀 AI Tutor App — Intelligent Tutoring System for WAEC / NECO / JAMB
 
-Adaptive Intelligent Tutoring System using ML/NLP for WAEC/NECO/JAMB
-Author: Nitoni Jim-Ogbolo
-GitHub: https://github.com/nitoni-jim
+A research-driven project applying Machine Learning, NLP, and RAG for automated exam preparation.
 
-📘 Abstract
 
-AI-Tutor-App is a research-driven project focused on building an intelligent, adaptive tutoring system for WAEC/NECO/JAMB examinations in Nigeria. It integrates Natural Language Processing (NLP), semantic embeddings, retrieval-augmented generation (RAG), and evaluation pipelines to deliver curriculum-aware practice questions, explanations, and personalized difficulty progression.
 
-This repository serves as a foundation for graduate-level research in NLP, low-resource education technologies, intelligent learning systems, and adaptive assessment.
 
-🎯 Motivation
 
-Millions of Nigerian students rely on inconsistent or inaccessible exam-prep materials. Most existing systems lack:
 
-True semantic understanding of questions
 
-Adaptive difficulty progression
 
-Curriculum-driven topic classification
+🌟 Overview
 
-Explanatory feedback
+AI Tutor App is an intelligent tutoring system designed to support candidates preparing for WAEC, NECO, and JAMB examinations in Nigeria.
+This project integrates:
 
-Handling of messy real-world question formats (OCR text, math expressions, mixed diagrams)
+Natural Language Processing (NLP)
 
-This project investigates a practical, research-oriented ML/NLP approach to solving these challenges.
+Machine Learning (ML)
 
-🏗️ System Architecture
-Overall Pipeline (Mermaid Diagram)
+Semantic Search using Embeddings
 
-GitHub renders Mermaid diagrams automatically.
+Retrieval-Augmented Generation (RAG)
 
-flowchart TD
-  A[Raw WAEC/NECO/JAMB Question Bank] --> B[Text Cleaning & Normalization]
-  B --> C[Tokenization, Sentence Splitting, Metadata Extraction]
-  C --> D[Embedding Generation (Sentence-Transformers)]
-  D --> E[Vector Store (FAISS / Numpy / Custom)]
-  E --> F[Retriever (Semantic Similarity Search)]
-  F --> G[RAG Generator (LLM-based)]
-  G --> H[Personalized Difficulty Estimation]
-  H --> I[Student UI / API Response Layer]
-  I --> J[Performance Logging & Feedback Metrics]
-  J --> K[Evaluation & Model Improvement Loop]
+The system performs:
 
-🧹 1. Preprocessing Pipeline
+Automated question cleaning & normalization
 
-Located in preprocessing/
+Semantic embedding of questions
+
+Vector-based retrieval of similar items
+
+LLM-style explanation generation (placeholder for now)
+
+Clear modular structure for future deep learning extension
+
+This repository accompanies my graduate applications to UCSD and Arizona State University (ASU) and demonstrates applied AI engineering and research readiness.
+
+📂 Repository Structure
+ai-tutor-app/
+│
+├── preprocessing/          # Text cleaning & math normalization modules
+│   ├── text_cleaning.py
+│   └── math_cleaning.py
+│
+├── embeddings/             # Embedding creation & vector store
+│   ├── generate_embeddings.py
+│   ├── vector_store.py
+│
+├── rag/                    # Retrieval and generation pipeline
+│   ├── retriever.py
+│   ├── generator.py
+│   └── pipeline.py         # (future full RAG pipeline)
+│
+├── evaluation/             # Metrics for retrieval/classification
+│   └── metrics.py
+│
+├── notebooks/
+│   └── experiments_full.ipynb   # Full cleaning → embedding → retrieval → generation notebook
+│
+├── data/
+│   └── metadata/           # Saved embeddings, vector store, lookup files
+│
+├── run_demo.py             # Minimal CLI demo pipeline
+└── requirements.txt        # Dependencies
+
+🧠 Core Features
+🔹 1. Question Cleaning & Normalization
+
+Handles:
+
+Unicode inconsistencies
+
+Excess whitespace
+
+Mathematical symbol normalization (× → *, ÷ → /)
+
+Removal of control characters
+
+This ensures consistent text before embedding.
+
+🔹 2. Embedding Generation
+
+Uses:
+
+sentence-transformers/all-MiniLM-L6-v2 (if available)
+
+Otherwise a deterministic fallback for reproducibility
+
+Embeddings are stored in:
+
+data/metadata/vector_store.npy
+data/metadata/vector_store_texts.json
+
+🔹 3. Semantic Retrieval
+
+Implements cosine-similarity retrieval:
+
+retriever.retrieve(query_vector, top_k=3)
+
+
+Used to find semantically similar exam questions.
+
+🔹 4. Placeholder RAG Generation
+
+Combines retrieved context into a structured template.
+
+In the future this will be replaced by an actual LLM API integration (OpenAI, HuggingFace, Phi, etc.)
+
+🔹 5. Evaluation Tools
 
 Includes:
 
-text_cleaning.py – Unicode normalization, whitespace cleanup, dash fixes
+Recall@k
 
-math_cleaning.py – Math expression normalization (× → *, – → -)
+MRR (Mean Reciprocal Rank)
 
-OCR noise reduction
+Basic classification metrics
 
-Mixed-format question handling
+All in evaluation/metrics.py.
 
-Example:
-from preprocessing.text_cleaning import clean_text
-cleaned = clean_text("  Solve: 2×(3 + 4) — find the value. ")
+🧪 Experiments Notebook
 
-🔍 2. Embedding + Vector Search
+The notebook:
 
-Located in embeddings/
-
-Components:
-
-generate_embeddings.py
-
-vector_store.py
-
-Uses sentence-transformers for semantic vector representation:
-
-model = SentenceTransformer('all-MiniLM-L6-v2')
-embs = model.encode(["Calculate the LCM of 18 and 24"])
+notebooks/experiments_full.ipynb
 
 
-Vector store supports:
+Contains:
 
-Saving embeddings
+Data cleaning steps
 
-Loading embeddings
+Embedding generation
 
-Fast cosine similarity search
+Vector indexing
 
-🤖 3. Retrieval-Augmented Generation (RAG)
+Retrieval demonstration
 
-Located in rag/
+Explanation generation
 
-Modules:
+Evaluation examples
 
-retriever.py – nearest-neighbor semantic retrieval
+This notebook is designed for academic review and ML reproducibility.
 
-generator.py – placeholder LLM-based explanation generator
+📘 Research Questions
 
-pipeline.py – integrates retrieval + generation
+How can we best normalize mixed-format questions (math + text) for NLP models?
 
-Conceptual Flow:
+Can embeddings detect curriculum-equivalent WAEC/NECO/JAMB items?
 
-Convert student question → embedding
+How effective is a RAG pipeline in explaining exam questions?
 
-Retrieve top-k semantically similar past exam questions
+Can lightweight models help under-resourced students learn more effectively?
 
-Feed retrieved context to generator
+🧭 Future Roadmap
+🔜 Phase 1: Data Expansion
 
-Output explanation + next-step guidance
+Bulk ingestion of WAEC/NECO past questions
 
-📊 4. Evaluation Pipeline
+Automated difficulty labeling
 
-Located in evaluation/metrics.py
+Topic tag prediction (syllabus mapping)
 
-Supports:
+🔜 Phase 2: Model Improvement
 
-Accuracy
+FAISS vector index
 
-Precision
+Better embedding models (e.g., bge-large)
 
-Recall
+Classification model for question topics
 
-F1-score
+🔜 Phase 3: Full RAG System
 
-Upcoming additions:
+Fine-tuned model for exam solutions
 
-Retrieval metrics (MRR, Recall@k)
+Multi-step reasoning
 
-Student learning gain tracking
+Structured explanations (steps, diagrams)
 
-Difficulty progression validation
+🔜 Phase 4: Mobile App Integration
 
-📁 Project Structure
-ai-tutor-app/
-├── data/
-│   ├── raw/
-│   ├── cleaned/
-│   └── metadata/
-├── preprocessing/
-│   ├── text_cleaning.py
-│   └── math_cleaning.py
-├── embeddings/
-│   ├── generate_embeddings.py
-│   └── vector_store.py
-├── rag/
-│   ├── retriever.py
-│   ├── generator.py
-│   └── pipeline.py
-├── evaluation/
-│   └── metrics.py
-├── notebooks/
-│   └── experiments.ipynb
-└── README.md
+Android app (Java / Kotlin)
 
-🧪 Experiments
+Student performance analytics
 
-Use notebooks/experiments.ipynb to run:
+Offline-first learning
 
-Embedding comparison tests
+🧾 Citation
 
-Retrieval accuracy experiments
+If referencing this work:
 
-Early RAG prototypes
+@misc{jimogbolo2025aitutor,
+  title={AI-Tutor-App: An Intelligent Tutoring System for WAEC/NECO/JAMB Exams},
+  author={Nitoni Jim-Ogbolo},
+  year={2025},
+  url={https://github.com/nitoni-jim/ai-tutor-app}
+}
 
-Difficulty estimation baselines
-
-🔧 Installation
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-
-Recommended packages:
-sentence-transformers
-scikit-learn
-numpy
-pandas
-faiss-cpu
-jupyter
-
-🚀 Future Research Directions
-
-Fine-tuning LLMs for Nigerian curriculum domains
-
-Automated difficulty grading
-
-Topic classification using BERT / DistilBERT
-
-Multimodal support for math diagrams and images
-
-User modeling + adaptive learning paths
-
-Integration with mobile learning apps
-
-🤝 Contributions
-
-Open for academic collaborations.
-Feel free to fork, open issues, and submit pull requests.
-
-📜 License
-
-MIT License — free to use for research, education, and development.
-
-🧑‍💻 Author
+📬 Contact
 
 Nitoni Jim-Ogbolo
-AI/ML Researcher • Intelligent Tutoring Systems • Applied NLP
-GitHub: https://github.com/nitoni-jim
+AI Developer & Research Enthusiast
+Email: nitoni4fj@gmail.com
