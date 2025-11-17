@@ -1,3 +1,15 @@
+"""
+RAG Retriever
+
+Implements:
+- Cosine similarity retrieval
+- Top-k nearest neighbor search
+- Vector ranking for semantic question similarity
+
+Forms the retrieval stage of the RAG pipeline.
+"""
+
+
 # retriever.py
 import numpy as np
 from vector_store import cosine_similarity
