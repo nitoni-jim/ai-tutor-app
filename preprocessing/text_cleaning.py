@@ -1,3 +1,16 @@
+"""
+Text Cleaning Module
+
+Handles:
+- Lowercasing
+- Unicode normalization
+- Removing control characters
+- Standardizing punctuation and spacing
+
+Purpose:
+Prepare exam questions for embedding models by enforcing consistent text format.
+"""
+
 # text_cleaning.py
 # Utilities for normalizing and cleaning WAEC/NECO/JAMB question text.
 
