@@ -1,3 +1,14 @@
+"""
+RAG Generator (Prototype)
+
+Currently:
+- Produces template-based explanations using retrieved context
+
+Future:
+- Integrate LLM-based structured reasoning and multi-step explanations.
+"""
+
+
 # generator.py
 # Placeholder for LLM-based explanation generator
 
