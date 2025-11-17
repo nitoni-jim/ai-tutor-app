@@ -64,6 +64,17 @@ ai-tutor-app/
 ├── run_demo.py             # Minimal CLI demo pipeline
 └── requirements.txt        # Dependencies
 
+## 🧩 System Architecture
+
+```mermaid
+flowchart TD
+    A[Raw Exam Questions<br>WAEC / NECO / JAMB] --> B[Preprocessing<br>Text + Math Cleaning]
+    B --> C[Embeddings<br>MiniLM / Fallback]
+    C --> D[Vector Store<br>.npy + JSON]
+    D --> E[Retriever<br>Cosine Similarity]
+    E --> F[Generator<br>Placeholder RAG]
+    F --> G[Explanations<br>Future LLM Integration]
+
 🧠 Core Features
 🔹 1. Question Cleaning & Normalization
 
