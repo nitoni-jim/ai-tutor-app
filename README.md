@@ -1,6 +1,10 @@
 🚀 AI Tutor App — Intelligent Tutoring System for WAEC / NECO / JAMB
 
-A research-driven project applying Machine Learning, NLP, and RAG for automated exam preparation.
+A research-driven project applying Machine Learning, NLP, Embeddings, and RAG for automated exam preparation.
+
+
+
+
 
 
 
@@ -11,62 +15,61 @@ A research-driven project applying Machine Learning, NLP, and RAG for automated 
 
 🌟 Overview
 
-AI Tutor App is an intelligent tutoring system designed to support candidates preparing for WAEC, NECO, and JAMB examinations in Nigeria.
+AI Tutor App is an intelligent tutoring system designed for learners preparing for WAEC, NECO, and JAMB examinations in Nigeria.
+
 This project integrates:
 
 Natural Language Processing (NLP)
 
 Machine Learning (ML)
 
-Semantic Search using Embeddings
+Vector-based Semantic Search
 
 Retrieval-Augmented Generation (RAG)
 
 The system performs:
 
-Automated question cleaning & normalization
+Automated text cleaning & math normalization
 
-Semantic embedding of questions
+Embedding generation
 
-Vector-based retrieval of similar items
+Vector store indexing
 
-LLM-style explanation generation (placeholder for now)
+Semantic retrieval
 
-Clear modular structure for future deep learning extension
+LLM-style explanation templates (with future LLM integration)
 
-This repository accompanies my graduate applications to UCSD and Arizona State University (ASU) and demonstrates applied AI engineering and research readiness.
+The work is part of my MSCS application portfolio for UCSD and Arizona State University (ASU).
 
 📂 Repository Structure
 ai-tutor-app/
 │
-├── preprocessing/          # Text cleaning & math normalization modules
+├── preprocessing/              # Text & math normalization
 │   ├── text_cleaning.py
 │   └── math_cleaning.py
 │
-├── embeddings/             # Embedding creation & vector store
+├── embeddings/                 # Embeddings & vector store
 │   ├── generate_embeddings.py
-│   ├── vector_store.py
+│   └── vector_store.py
 │
-├── rag/                    # Retrieval and generation pipeline
+├── rag/                        # Retrieval + generation modules
 │   ├── retriever.py
 │   ├── generator.py
-│   └── pipeline.py         # (future full RAG pipeline)
+│   └── pipeline.py
 │
-├── evaluation/             # Metrics for retrieval/classification
+├── evaluation/                 # Metrics for retrieval
 │   └── metrics.py
 │
 ├── notebooks/
-│   └── experiments_full.ipynb   # Full cleaning → embedding → retrieval → generation notebook
+│   └── experiments_full.ipynb  # Full pipeline notebook
 │
 ├── data/
-│   └── metadata/           # Saved embeddings, vector store, lookup files
+│   └── metadata/               # Stored embeddings & text lookup
 │
-├── run_demo.py             # Minimal CLI demo pipeline
-└── requirements.txt        # Dependencies
+├── run_demo.py                 # Minimal CLI demonstration
+└── requirements.txt            # Project dependencies
 
-## 🧩 System Architecture
-
-```mermaid
+🧩 System Architecture
 flowchart TD
     A[Raw Exam Questions<br>WAEC / NECO / JAMB] --> B[Preprocessing<br>Text + Math Cleaning]
     B --> C[Embeddings<br>MiniLM / Fallback]
@@ -76,49 +79,53 @@ flowchart TD
     F --> G[Explanations<br>Future LLM Integration]
 
 🧠 Core Features
-🔹 1. Question Cleaning & Normalization
+🔹 1. Text Cleaning & Normalization
 
 Handles:
 
 Unicode inconsistencies
 
-Excess whitespace
+Stopword cleanup
 
-Mathematical symbol normalization (× → *, ÷ → /)
+Whitespace normalization
 
-Removal of control characters
+Math symbol correction (× → *, ÷ → /)
 
-This ensures consistent text before embedding.
+Math-aware normalization
 
 🔹 2. Embedding Generation
 
 Uses:
 
-sentence-transformers/all-MiniLM-L6-v2 (if available)
+sentence-transformers/all-MiniLM-L6-v2 (if installed)
 
-Otherwise a deterministic fallback for reproducibility
+Deterministic fallback embeddings (ensures reproducibility & notebook execution)
 
-Embeddings are stored in:
+Embeddings are stored as:
 
-data/metadata/vector_store.npy
-data/metadata/vector_store_texts.json
+vector_store.npy
+vector_store_texts.json
 
 🔹 3. Semantic Retrieval
 
-Implements cosine-similarity retrieval:
+Implements cosine-similarity–based retrieval:
 
 retriever.retrieve(query_vector, top_k=3)
 
 
-Used to find semantically similar exam questions.
+Used to fetch semantically similar WAEC/NECO/JAMB exam questions.
 
-🔹 4. Placeholder RAG Generation
+🔹 4. Retrieval-Augmented Explanation (Prototype)
 
-Combines retrieved context into a structured template.
+The generator:
 
-In the future this will be replaced by an actual LLM API integration (OpenAI, HuggingFace, Phi, etc.)
+Retrieves relevant context
 
-🔹 5. Evaluation Tools
+Formats a structured explanation template
+
+Prepares for future LLM integration (OpenAI / HuggingFace models)
+
+🔹 5. Evaluation Framework
 
 Includes:
 
@@ -128,78 +135,71 @@ MRR (Mean Reciprocal Rank)
 
 Basic classification metrics
 
-All in evaluation/metrics.py.
-
 🧪 Experiments Notebook
 
-The notebook:
-
+Full demonstration notebook:
 notebooks/experiments_full.ipynb
 
+This notebook contains:
 
-Contains:
-
-Data cleaning steps
+Cleaning pipeline
 
 Embedding generation
 
 Vector indexing
 
-Retrieval demonstration
+Retrieval demo
 
-Explanation generation
+Explanation template generation
 
 Evaluation examples
 
-This notebook is designed for academic review and ML reproducibility.
+Designed for academic review and ML reproducibility.
 
-📘 Research Questions
+🧭 Roadmap
+Phase 1 — Data Expansion
 
-How can we best normalize mixed-format questions (math + text) for NLP models?
+Collect more WAEC/NECO/JAMB questions
 
-Can embeddings detect curriculum-equivalent WAEC/NECO/JAMB items?
+Difficulty annotation
 
-How effective is a RAG pipeline in explaining exam questions?
+Topic classification (syllabus mapping)
 
-Can lightweight models help under-resourced students learn more effectively?
-
-🧭 Future Roadmap
-🔜 Phase 1: Data Expansion
-
-Bulk ingestion of WAEC/NECO past questions
-
-Automated difficulty labeling
-
-Topic tag prediction (syllabus mapping)
-
-🔜 Phase 2: Model Improvement
+Phase 2 — ML Improvements
 
 FAISS vector index
 
-Better embedding models (e.g., bge-large)
+Higher-quality embeddings (bge-large, E5-large)
 
-Classification model for question topics
+Fine-tuned topic classifier
 
-🔜 Phase 3: Full RAG System
+Phase 3 — Full RAG System
 
-Fine-tuned model for exam solutions
+Structured reasoning
 
-Multi-step reasoning
+Multi-step explanation generator
 
-Structured explanations (steps, diagrams)
+Math derivation support
 
-🔜 Phase 4: Mobile App Integration
+Phase 4 — Mobile App
 
-Android app (Java / Kotlin)
+Android app integration
 
-Student performance analytics
+Personalized learning analytics
 
-Offline-first learning
+Offline-first capabilities
+
+📘 Research Questions
+
+How do NLP embeddings handle mixed-format math + text exam questions?
+
+Which embedding models best capture curriculum-level semantic similarity?
+
+What RAG architecture is most effective for educational explanations?
+
+How can AI improve equitable access to learning in Africa?
 
 🧾 Citation
-
-If referencing this work:
-
 @misc{jimogbolo2025aitutor,
   title={AI-Tutor-App: An Intelligent Tutoring System for WAEC/NECO/JAMB Exams},
   author={Nitoni Jim-Ogbolo},
