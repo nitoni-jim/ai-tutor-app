@@ -20,10 +20,12 @@ Click the **Fork** button on GitHub to create your own copy of the project.
 
 ### 2. Clone your fork
 
+git clone https://github.com/<your-username>/ai-tutor-app.git
+cd ai-tutor-app
 
 
 ### 3. Create a feature branch
-
+git checkout -b feature/my-improvement
 
 ### 4. Make your changes
 - Follow clean coding practices  
@@ -32,18 +34,20 @@ Click the **Fork** button on GitHub to create your own copy of the project.
 - Avoid breaking existing structure unless necessary  
 
 ### 5. Run tests (coming soon)
+# No tests yet — this will be implemented soon
+
 Tests will be added as the project expands.  
 For now, use this placeholder:
 
 
-
 ### 6. Commit your changes
-Use a descriptive commit message:
-
+git commit -m "Add: brief summary of improvement"
 
 
 ### 7. Push your branch
 Push your feature branch back to your fork:
+git push origin feature/my-improvement
+
 
 
 
