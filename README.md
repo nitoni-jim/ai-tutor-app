@@ -1,4 +1,7 @@
 🚀 AI Tutor App — Intelligent Tutoring System for WAEC / NECO / JAMB
+<p align="center">
+  <img src="https://img.shields.io/badge/AI%20Tutor%20App-Intelligent%20Learning%20System-blue?style=for-the-badge" />
+</p>
 
 A research-driven project applying Machine Learning, NLP, Embeddings, and RAG for automated exam preparation.
 
